@@ -47,24 +47,25 @@ class AuthController extends Controller
 
             if (!$user) {
                 return ResponseHelper::error(
-                    message: 'Unable To Login ! due to invalid credentials ',
+                    message: 'Unable To Login! Invalid credentials.',
                     statusCode: 400
                 );
             }
 
+            // Generate a token for the user
             $token = $user->createToken('My Api Token')->plainTextToken;
             $authUser = ['user' => $user, 'token' => $token];
 
             return ResponseHelper::success(
-                message: 'You are Logged in Successfully !',
+                message: 'You are logged in successfully!',
                 data: $authUser,
                 statusCode: 200
             );
         } catch (Exception $e) {
-            \Log::error('Unable to Login User : ' . $e->getMessage() . ' - Line no. ' . $e->getLine());
+            \Log::error('Unable to login user: ' . $e->getMessage() . ' - Line no. ' . $e->getLine());
 
             return ResponseHelper::error(
-                message: 'Unable To Login ! Please try again !' . $e->getMessage(),
+                message: 'Unable to login! Please try again! ' . $e->getMessage(),
                 statusCode: 500
             );
         }

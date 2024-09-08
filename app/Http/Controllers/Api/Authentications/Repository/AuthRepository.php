@@ -22,9 +22,14 @@ class AuthRepository implements AuthInterface
 
     public function login(array $credentials): ?User
     {
-        if (Auth::attempt($credentials)) {
-            return Auth::user();
+//        dd($credentials);
+
+        $user = User::where('email', $credentials['email'])->first();
+
+        if ($user && Hash::check($credentials['password'], $user->password)) {
+            return $user;
         }
+
         return null;
     }
 

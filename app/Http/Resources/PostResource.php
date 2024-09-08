@@ -18,8 +18,10 @@ class PostResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'content' => $this->content,
-            'author' => $this->author->name,
+            'slug' => $this->slug,
             'published_at' => $this->published_at,
+            'categories' => $this->categories->pluck('name'),
+            'tags' => $this->tags->pluck('name'),
         ];
     }
 }

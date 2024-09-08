@@ -13,15 +13,20 @@ class Post extends Model
 
     protected $fillable = ['title', 'content', 'slug', 'author_id', 'published_at'];
 
-    // Define many-to-many relationship with Category
+    /**
+     * The categories that belong to the post.
+     */
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, 'category_post');
     }
 
-    // Define many-to-many relationship with Tag
+    /**
+     * The tags that belong to the post.
+     */
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class, 'post_tag');
     }
+
 }
