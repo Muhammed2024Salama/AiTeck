@@ -46,7 +46,7 @@ class PostController extends Controller
             'tags' => 'required',
         ]);
 
-        $post = Post::create([
+         $post = Post::create([
             'title' => $validatedData['title'],
             'content' => $validatedData['content'],
             'slug' => $validatedData['slug'],
@@ -87,10 +87,6 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-
-//        if (auth()->user()->id !== $post->author_id && !auth()->user()->hasRole('admin')) {
-//            return response()->json(['error' => 'Unauthorized'], 403);
-//        }
 
         $post->delete();
         return response()->json(['message' => 'Post deleted successfully']);

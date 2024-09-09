@@ -2,12 +2,13 @@
 
 use App\Http\Controllers\Api\Authentications\Controllers\AuthController;
 use App\Http\Controllers\Api\Category\Controllers\CategoryController;
+use App\Http\Controllers\Api\PostCategory\Controllers\PostCategoryController;
 use App\Http\Controllers\Api\Role\Controllers\RoleController;
 use App\Http\Controllers\Api\Tags\Controllers\TagController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostTagController;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 //Route::get('/user', function (Request $request) {
@@ -68,4 +69,27 @@ Route::middleware('auth:sanctum')->group(function () {
      * Comment Routes (Authenticated users can add comments)
      **/
     Route::apiResource('posts.comments', CommentController::class)->shallow();
+
+    /**
+     * Post-Category Relationships
+     * Manage the relationship between posts and categories.
+     */
+    Route::prefix('/posts/{post}/categories')->group(function () {
+        Route::post('/', [PostCategoryController::class, 'attachCategory']);
+        Route::delete('/{category}', [PostCategoryController::class, 'detachCategory']);
+        Route::put('/update', [PostCategoryController::class, 'updateCategory']);
+        Route::get('/', [PostCategoryController::class, 'showCategories']);
+    });
+
+    /**
+     * Post-Tag Relationships
+     * Manage the relationship between posts and tags.
+     */
+    Route::prefix('/posts/{post}/tags')->group(function () {
+        Route::post('/', [PostTagController::class, 'attachTag']);
+        Route::delete('/{tag}', [PostTagController::class, 'detachTag']);
+        Route::put('/update', [PostTagController::class, 'updateTag']);
+        Route::get('/', [PostTagController::class, 'showTags']);
+    });
+
 });
