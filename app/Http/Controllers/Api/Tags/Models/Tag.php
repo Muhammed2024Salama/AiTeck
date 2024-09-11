@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Tags\Models;
 
-use App\Models\Post;
+use App\Http\Controllers\Api\Posts\Models\Post;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,7 +10,12 @@ class Tag extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'name'
+    ];
 
     /**
      * The posts that belong to the tag.

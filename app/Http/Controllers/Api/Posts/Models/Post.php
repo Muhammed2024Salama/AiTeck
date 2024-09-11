@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Controllers\Api\Posts\Models;
 
 use App\Http\Controllers\Api\Category\Models\Category;
 use App\Http\Controllers\Api\Tags\Models\Tag;
@@ -11,7 +11,16 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'content', 'slug', 'author_id', 'published_at'];
+    /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'title',
+        'content',
+        'slug',
+        'author_id',
+        'published_at'
+    ];
 
     /**
      * The categories that belong to the post.
@@ -28,5 +37,4 @@ class Post extends Model
     {
         return $this->belongsToMany(Tag::class, 'post_tag');
     }
-
 }

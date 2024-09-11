@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\PostCategory\Controllers;
 
 use App\Http\Controllers\Api\Category\Models\Category;
+use App\Http\Controllers\Api\Posts\Models\Post;
 use App\Http\Controllers\Controller;
-use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostCategoryController extends Controller
@@ -47,18 +47,14 @@ class PostCategoryController extends Controller
      */
     public function updateCategory(Request $request, Post $post)
     {
-        // نتحقق من الـ category_id الجديد
         $newCategoryId = $request->input('new_category_id');
         $oldCategoryId = $request->input('old_category_id');
 
-        // نتأكد من وجود الـ categories
         $newCategory = Category::findOrFail($newCategoryId);
         $oldCategory = Category::findOrFail($oldCategoryId);
 
-        // نحذف التصنيف القديم
         $post->categories()->detach($oldCategoryId);
 
-        // نضيف التصنيف الجديد
         $post->categories()->attach($newCategoryId);
 
         return response()->json([
@@ -72,7 +68,6 @@ class PostCategoryController extends Controller
      */
     public function showCategories(Post $post)
     {
-        // الحصول على التصنيفات المرتبطة بالبوست
         $categories = $post->categories;
 
         return response()->json([

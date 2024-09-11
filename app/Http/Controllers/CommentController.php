@@ -7,11 +7,20 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    /**
+     * @param $postId
+     * @return mixed
+     */
     public function index($postId)
     {
         return Comment::where('post_id', $postId)->get();
     }
 
+    /**
+     * @param Request $request
+     * @param $postId
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Request $request, $postId)
     {
         $request->validate(['content' => 'required']);
@@ -25,6 +34,10 @@ class CommentController extends Controller
         return response()->json($comment, 201);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function destroy($id)
     {
         $comment = Comment::findOrFail($id);

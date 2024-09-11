@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthRepository implements AuthInterface
 {
+    /**
+     * @param array $data
+     * @return User
+     */
     public function register(array $data): User
     {
         return User::create([
@@ -20,6 +24,10 @@ class AuthRepository implements AuthInterface
         ]);
     }
 
+    /**
+     * @param array $credentials
+     * @return User|null
+     */
     public function login(array $credentials): ?User
     {
 //        dd($credentials);
@@ -33,11 +41,17 @@ class AuthRepository implements AuthInterface
         return null;
     }
 
+    /**
+     * @return User|null
+     */
     public function getUser(): ?User
     {
         return Auth::user();
     }
 
+    /**
+     * @return bool
+     */
     public function logout(): bool
     {
         $user = Auth::user();

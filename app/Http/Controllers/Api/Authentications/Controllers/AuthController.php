@@ -13,13 +13,23 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+    /**
+     * @var AuthInterface
+     */
     protected AuthInterface $authRepository;
 
+    /**
+     * @param AuthInterface $authRepository
+     */
     public function __construct(AuthInterface $authRepository)
     {
         $this->authRepository = $authRepository;
     }
 
+    /**
+     * @param RegisterRequest $request
+     * @return mixed
+     */
     public function register(RegisterRequest $request)
     {
         try {
@@ -40,6 +50,10 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * @param LoginRequest $request
+     * @return mixed
+     */
     public function login(LoginRequest $request)
     {
         try {
@@ -71,6 +85,9 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function userProfile()
     {
         try {
@@ -97,6 +114,9 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function userLogout()
     {
         try {

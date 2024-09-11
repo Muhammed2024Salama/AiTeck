@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api\Category\Requests;
+namespace App\Http\Controllers\Api\Posts\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCategoryRequest extends FormRequest
+class UpdatePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,10 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:categories,name',
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'categories' => 'required|array',
+            'tags' => 'required|array',
         ];
     }
 }

@@ -3,12 +3,11 @@
 use App\Http\Controllers\Api\Authentications\Controllers\AuthController;
 use App\Http\Controllers\Api\Category\Controllers\CategoryController;
 use App\Http\Controllers\Api\PostCategory\Controllers\PostCategoryController;
-use App\Http\Controllers\Api\Role\Controllers\RoleController;
+use App\Http\Controllers\Api\Posts\Controllers\PostController;
 use App\Http\Controllers\Api\Tags\Controllers\TagController;
+use App\Http\Controllers\Api\Users\Controllers\UserController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostTagController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 //Route::get('/user', function (Request $request) {
@@ -36,11 +35,6 @@ Route::controller(AuthController::class)->group(function () {
  * Grouping Routes that require authentication
  */
 Route::middleware('auth:sanctum')->group(function () {
-
-    /**
-     * Roles Routes (Authenticated users can add Roles)
-     */
-    Route::apiResource('roles', RoleController::class);
 
     /**
      * Users Routes
@@ -91,5 +85,4 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/update', [PostTagController::class, 'updateTag']);
         Route::get('/', [PostTagController::class, 'showTags']);
     });
-
 });

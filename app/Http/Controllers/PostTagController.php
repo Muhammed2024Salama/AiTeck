@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Api\Posts\Models\Post;
 use App\Http\Controllers\Api\Tags\Models\Tag;
-use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostTagController extends Controller
@@ -39,6 +39,7 @@ class PostTagController extends Controller
             'message' => 'Tag detached from post successfully.',
         ], 200);
     }
+
     /**
      * @param Request $request
      * @param Post $post
