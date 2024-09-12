@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Controllers\Api\Comments\Models;
 
 use App\Http\Controllers\Api\Posts\Models\Post;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model

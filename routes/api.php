@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\Api\Authentications\Controllers\AuthController;
 use App\Http\Controllers\Api\Category\Controllers\CategoryController;
+use App\Http\Controllers\Api\Comments\Controllers\CommentController;
 use App\Http\Controllers\Api\PostCategory\Controllers\PostCategoryController;
 use App\Http\Controllers\Api\Posts\Controllers\PostController;
+use App\Http\Controllers\Api\PostTag\Controllers\PostTagController;
 use App\Http\Controllers\Api\Tags\Controllers\TagController;
 use App\Http\Controllers\Api\Users\Controllers\UserController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\PostTagController;
 use Illuminate\Support\Facades\Route;
 
 //Route::get('/user', function (Request $request) {

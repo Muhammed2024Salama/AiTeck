@@ -25,7 +25,7 @@ class SendCommentNotification
             Notification::create([
                 'user_to' => $userTo,
                 'user_from' => $userFrom,
-                'message' => "User {$userFromName} commented on your post.", 
+                'message' => "User {$userFromName} commented on your post.",
             ]);
         }
     }

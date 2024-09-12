@@ -1,28 +1,32 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Comments\Repository;
 
 use App\Events\CommentAdded;
-use App\Models\Comment;
+use App\Http\Controllers\Api\Comments\Interface\CommentInterface;
+use App\Http\Controllers\Api\Comments\Models\Comment;
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class CommentRepository implements CommentInterface
 {
+
     /**
+     * Get comments by post ID
      * @param $postId
      * @return mixed
      */
-    public function index($postId)
+    public function getCommentsByPostId($postId)
     {
         return Comment::where('post_id', $postId)->get();
     }
 
     /**
+     * Create a new comment
      * @param Request $request
      * @param $postId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request, $postId)
+    public function createComment(Request $request, $postId)
     {
         $request->validate(['content' => 'required']);
 
@@ -40,10 +44,11 @@ class CommentController extends Controller
     }
 
     /**
+     * Delete a comment by ID
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function deleteComment($id)
     {
         $comment = Comment::findOrFail($id);
 

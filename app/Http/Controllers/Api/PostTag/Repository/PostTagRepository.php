@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\PostTag\Repository;
 
 use App\Http\Controllers\Api\Posts\Models\Post;
+use App\Http\Controllers\Api\PostTag\Interface\PostTagInterface;
 use App\Http\Controllers\Api\Tags\Models\Tag;
 use Illuminate\Http\Request;
 
-class PostTagController extends Controller
+class PostTagRepository implements PostTagInterface
 {
     /**
+     * Attach a tag to a post
      * @param Request $request
      * @param Post $post
      * @return mixed
@@ -24,7 +26,9 @@ class PostTagController extends Controller
             'message' => 'Tag attached to post successfully.',
         ], 200);
     }
-    /**\
+
+    /**
+     * Detach a tag from a post
      * @param Post $post
      * @param Tag $tag
      * @return mixed
@@ -39,6 +43,7 @@ class PostTagController extends Controller
     }
 
     /**
+     * Update a tag attached to a post
      * @param Request $request
      * @param Post $post
      * @return mixed
@@ -60,10 +65,11 @@ class PostTagController extends Controller
     }
 
     /**
+     * Get tags associated with a post
      * @param Post $post
      * @return mixed
      */
-    public function showTags(Post $post)
+    public function getTagsByPost(Post $post)
     {
         $tags = $post->tags;
 
