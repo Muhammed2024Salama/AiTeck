@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CommentAdded;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 
@@ -26,10 +27,14 @@ class CommentController extends Controller
         $request->validate(['content' => 'required']);
 
         $comment = Comment::create([
-            'content' => $request->content,
+            'content' => $request->input(['content']),
             'post_id' => $postId,
-            'user_id' => $request->user()->id,
+            'user_id' => auth()->user()->id,
         ]);
+
+        $comment->load('post');
+
+        CommentAdded::dispatch($comment);
 
         return response()->json($comment, 201);
     }

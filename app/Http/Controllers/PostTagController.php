@@ -13,7 +13,6 @@ class PostTagController extends Controller
      * @param Post $post
      * @return mixed
      */
-    // ربط التصنيف بالبوست
     public function attachTag(Request $request, Post $post)
     {
         $tagId = $request->input('tag_id');
@@ -30,7 +29,6 @@ class PostTagController extends Controller
      * @param Tag $tag
      * @return mixed
      */
-    // فصل التصنيف عن البوست
     public function detachTag(Post $post, Tag $tag)
     {
         $post->tags()->detach($tag->id);
@@ -45,7 +43,6 @@ class PostTagController extends Controller
      * @param Post $post
      * @return mixed
      */
-    // تحديث التصنيفات
     public function updateTag(Request $request, Post $post)
     {
         $newTagId = $request->input('new_tag_id');
@@ -66,7 +63,6 @@ class PostTagController extends Controller
      * @param Post $post
      * @return mixed
      */
-    // عرض التصنيفات
     public function showTags(Post $post)
     {
         $tags = $post->tags;
